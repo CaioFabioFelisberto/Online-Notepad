@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+</head>
+<body class="auth-page login-page">
+    <main class="auth-shell">
+        <section class="brand-panel">
+            <p class="eyebrow">Your calm writing space</p>
+            <h1>Online Notepad</h1>
+            <p class="brand-copy">Capture ideias, listas e lembretes com uma interface limpa e elegante.</p>
+        </section>
+
+        <section class="auth-card">
+            <h2>Log in to your account</h2>
+            <form action="{{url_for('login')}}" method="POST" class="auth-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Insert your username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Insert your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="auth-switch">Don't have an account? <a href="{{url_for('signup')}}">Sign up</a></p>
+
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

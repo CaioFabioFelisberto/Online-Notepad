@@ -1,0 +1,7 @@
+@import url('./style.css');
+
+.signup-page .brand-panel {
+	background:
+		linear-gradient(130deg, rgba(246, 241, 231, 0.9), rgba(243, 231, 221, 0.96)),
+		repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(98, 82, 65, 0.08) 29px, rgba(98, 82, 65, 0.08) 30px);
+}

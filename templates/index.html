@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Notepad</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body class="editor-page">
+    <main class="editor-shell">
+        <header class="editor-header">
+            <p class="eyebrow">Now editing</p>
+            <h1>Online Notepad</h1>
+            <h2>{{ title }}</h2>
+        </header>
+
+        <section class="editor-grid">
+            <article class="preview-card">
+                <h3>Preview</h3>
+                <div class="preview-content">
+                    {{ html_content | safe }}
+                </div>
+            </article>
+
+            <section class="write-card">
+                <h3>Your note</h3>
+                <form method="POST" action="{{ url_for('notepad', note_name=title) }}" class="editor-form">
+                    <textarea name="note_text" rows="15" cols="60">{{ content }}</textarea>
+
+                    <div class="actions-row">
+                        <button type="submit" name="action" value="save">Save Note</button>
+                        <button type="submit" name="action" value="go_back" class="secondary">Go Back</button>
+                        {% if content %}
+                            <button type="submit" name="action" value="delete" class="danger">Delete Note</button>
+                        {% endif %}
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

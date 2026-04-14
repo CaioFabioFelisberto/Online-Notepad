@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Note</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='get_note.css')}}">
+</head>
+<body class="notes-list-page">
+    <main class="notes-hub">
+        <header class="notes-header">
+            <p class="eyebrow">Workspace</p>
+            <h1>Online Notepad</h1>
+            <p class="subtitle">Gerencie suas notas em um painel limpo e organizado.</p>
+        </header>
+
+        <section class="panel">
+            <h2>Abrir ou criar nota</h2>
+            <form action="{{ url_for('select_note') }}" method="POST" class="note-form">
+                <label for="note_name">Escolha sua nota</label>
+                <select name="note_name" id="note_name">
+                    <option value="" disabled selected>Selecione uma nota...</option>
+                    {% for note in all_notes %}
+                        <option value="{{ note['name'] }}">{{ note['name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="actions-row">
+                    <button type="submit" name="action" value="get_note">Open Note</button>
+                    <button type="submit" name="action" value="delete_note" class="danger">Delete Note</button>
+                </div>
+
+                <div class="new-note-row">
+                    <input type="text" name="new_note_name" placeholder="Nome para nova nota">
+                    <button type="submit" name="action" value="create_note">Create New Note</button>
+                </div>
+                <button type="submit" name="action" value="logout" class="logout-btn">Log out</button>
+            </form>
+            {%if error%}
+                <p class="error-message">{{ error }}</p>
+            {%endif%}
+        </section>
+
+        <section class="panel notes-panel">
+            <h2>Available Notes</h2>
+            <p class="notes-hint">Ordered by last updated note</p>
+            <ul class="notes-list">
+                {%for note in all_notes%}
+                    <li>{{ note['name'] }}</li>
+                {%endfor%}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
