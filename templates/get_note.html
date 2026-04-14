@@ -11,15 +11,15 @@
         <header class="notes-header">
             <p class="eyebrow">Workspace</p>
             <h1>Online Notepad</h1>
-            <p class="subtitle">Gerencie suas notas em um painel limpo e organizado.</p>
+            <p class="subtitle">Manage your notes in a clean and organized panel.</p>
         </header>
 
         <section class="panel">
-            <h2>Abrir ou criar nota</h2>
+            <h2>Open or Create Note</h2>
             <form action="{{ url_for('select_note') }}" method="POST" class="note-form">
-                <label for="note_name">Escolha sua nota</label>
+                <label for="note_name">Choose your note</label>
                 <select name="note_name" id="note_name">
-                    <option value="" disabled selected>Selecione uma nota...</option>
+                    <option value="" disabled selected>Select a note...</option>
                     {% for note in all_notes %}
                         <option value="{{ note['name'] }}">{{ note['name'] }}</option>
                     {% endfor %}
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="new-note-row">
-                    <input type="text" name="new_note_name" placeholder="Nome para nova nota">
+                    <input type="text" name="new_note_name" placeholder="Name for new note">
                     <button type="submit" name="action" value="create_note">Create New Note</button>
                 </div>
                 <button type="submit" name="action" value="logout" class="logout-btn">Log out</button>
